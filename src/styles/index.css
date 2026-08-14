@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-charcoal text-ivory font-body antialiased;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 700ms ease, transform 700ms cubic-bezier(.2,.65,.3,1);
+}
+[data-reveal="true"] { opacity: 1; transform: none; }
+
+.hero__wash { position: absolute; inset: 0; background: radial-gradient(circle at 82% 45%, rgba(216,181,120,.16), transparent 28%), linear-gradient(115deg, #171717 20%, #20201e 100%); }
+.hero__photo-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(17,17,17,.88) 0%, rgba(17,17,17,.7) 34%, rgba(17,17,17,.24) 68%, rgba(17,17,17,.32) 100%); }
+.hero-art { position: absolute; inset: 0; overflow: hidden; border: 1px solid rgba(255,255,255,.12); background: #262622; animation: hero-art-in 900ms cubic-bezier(.2,.65,.3,1) both; }
+.hero-art__frame { position: absolute; inset: 9%; border: 1px solid rgba(216,181,120,.65); }.hero-art__shape { position: absolute; background: #d8b578; }
+.hero-art__shape--one { width: 47%; height: 58%; right: 9%; top: 14%; opacity: .9; }.hero-art__shape--two { width: 45%; height: 38%; left: 8%; bottom: 8%; background: #5fb8a3; opacity: .62; }
+.hero-art__line { position: absolute; height: 1px; background: rgba(255,255,255,.7); transform-origin: left; }.hero-art__line--one { width: 70%; left: 0; top: 27%; transform: rotate(-27deg); }.hero-art__line--two { width: 78%; right: -18%; bottom: 21%; transform: rotate(37deg); }
+.hero-art__caption { position: absolute; left: 9%; top: 13%; font: 500 10px/1 "JetBrains Mono", monospace; letter-spacing: .18em; color: #171717; background: #d8b578; padding: .55rem .7rem; }
+.hero-art--grid { background-image: linear-gradient(rgba(216,181,120,.11) 1px, transparent 1px), linear-gradient(90deg, rgba(216,181,120,.11) 1px, transparent 1px); background-size: 42px 42px; }.hero-art--grid .hero-art__shape--one { width: 65%; height: 45%; top: 18%; right: -8%; background: #5fb8a3; }.hero-art--grid .hero-art__shape--two { width: 36%; height: 57%; left: 12%; bottom: 7%; background: #d8b578; }
+.hero-art--circuit .hero-art__shape--one { border-radius: 50%; width: 42%; height: 42%; right: 13%; top: 14%; }.hero-art--circuit .hero-art__shape--two { width: 52%; height: 4%; left: 0; bottom: 27%; background: #d8b578; }
+.hero-copy-in { animation: hero-copy-in 700ms cubic-bezier(.2,.65,.3,1) both; }.hero-copy-in--delay-1 { animation-delay: 80ms; }.hero-copy-in--delay-2 { animation-delay: 150ms; }.hero-copy-in--delay-3 { animation-delay: 220ms; }
+.hero__dot { width: .55rem; height: .55rem; border-radius: 999px; background: rgba(255,255,255,.3); transition: width 250ms ease, background-color 250ms ease; }.hero__dot--active { width: 2rem; background: #d8b578; }
+.hero__arrow { width: 2.65rem; height: 2.65rem; border: 1px solid rgba(255,255,255,.3); color: #fffdf7; font-size: 1.1rem; transition: border-color 200ms ease, color 200ms ease; }.hero__arrow:hover { border-color: #d8b578; color: #d8b578; }
+@keyframes hero-copy-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } } @keyframes hero-art-in { from { opacity: 0; transform: scale(.96) translateX(16px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 640px) { .hero__photo-overlay { background: linear-gradient(90deg, rgba(17,17,17,.9), rgba(17,17,17,.55)); } }
+
+.eyebrow {
+  @apply font-mono uppercase tracking-[0.2em] text-xs text-brass flex items-center gap-3;
+}
+.eyebrow::before {
+  content: "";
+  @apply w-8 h-px bg-brass inline-block;
+}
+
+.btn-primary {
+  @apply inline-flex items-center gap-2 bg-brass text-charcoal font-semibold px-7 py-3.5 rounded-sm
+  hover:bg-brass-light transition-colors duration-200;
+}
+.btn-outline {
+  @apply inline-flex items-center gap-2 border border-mute/40 text-ivory font-semibold px-7 py-3.5 rounded-sm
+  hover:border-brass hover:text-brass transition-colors duration-200;
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  [data-reveal] { opacity: 1; transform: none; }
+  .hero-art, .hero-copy-in { animation: none; }
+}
+
+:focus-visible {
+  outline: 2px solid #d8b578;
+  outline-offset: 2px;
+}
