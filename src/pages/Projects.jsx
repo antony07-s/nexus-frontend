@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getProjects } from "../api/client.js";
 import SEO from "../components/SEO.jsx";
 import Pagination from "../components/Pagination.jsx";
+import { LoadingGrid } from "../components/AsyncStates.jsx";
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
@@ -9,11 +10,14 @@ export default function Projects() {
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     getProjects({ page, limit: 12 })
       .then((res) => { setProjects(res.data.data); setPages(res.data.pages || 1); setError(""); })
-      .catch(() => { setProjects([]); setError("Projects are temporarily unavailable. Please try again shortly."); });
+      .catch(() => { setProjects([]); setError("Projects are temporarily unavailable. Please try again shortly."); })
+      .finally(() => setLoading(false));
   }, [page]);
 
   const categories = ["All", "Interior", "Architecture", "Consulting", "IT"];
@@ -39,7 +43,9 @@ export default function Projects() {
         ))}
       </div>
 
-      {visible.length === 0 ? (
+      {loading ? (
+        <LoadingGrid />
+      ) : visible.length === 0 ? (
         <p className="text-mute">
           No projects loaded yet — connect MongoDB Atlas and add project entries via the API to
           populate this page.

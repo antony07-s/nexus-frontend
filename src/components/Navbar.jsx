@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
+import nexusLogo from "../assets/nexuslogo.png";
 
 const links = [
   { to: "/", label: "Nexus" },
@@ -32,14 +33,9 @@ export default function Navbar() {
 
       {/* Main nav */}
       <nav className="bg-charcoal-soft/95 backdrop-blur border-b border-white/5 px-8 py-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="border border-brass text-brass font-display text-xl px-3 py-1 tracking-wider">
-            N&middot;D&middot;B
-          </span>
-          <span className="hidden lg:block font-display text-lg text-ivory">
-            Nexus <span className="text-brass">Design &amp; Built</span>
-          </span>
-        </Link>
+        <Link to="/" className="flex items-center">
+  <img src={nexusLogo} alt="Nexus Design & Built" className="h-14 w-auto object-contain rounded-md p-1" />
+</Link>
 
         <div className="hidden lg:flex items-center gap-8 font-body text-sm uppercase tracking-wide">
           {links.map((l) => (

@@ -10,6 +10,7 @@ import Awards from "./pages/Awards.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
 import Blog from "./pages/Blog.jsx";
 import Contact from "./pages/Contact.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 export default function App() {
   return (
@@ -26,7 +27,7 @@ export default function App() {
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact-us" element={<Contact />} />
-          <Route path="*" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

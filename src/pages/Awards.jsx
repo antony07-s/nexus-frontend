@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import { getAwards } from "../api/client.js";
 import SEO from "../components/SEO.jsx";
 import Pagination from "../components/Pagination.jsx";
+import { LoadingGrid } from "../components/AsyncStates.jsx";
 
 export default function Awards() {
   const [awards, setAwards] = useState([]);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     getAwards({ page, limit: 12 })
       .then((res) => { setAwards(res.data.data); setPages(res.data.pages || 1); })
-      .catch(() => setAwards([]));
+      .catch(() => setAwards([]))
+      .finally(() => setLoading(false));
   }, [page]);
 
   return (
@@ -20,7 +24,9 @@ export default function Awards() {
       <span className="eyebrow mb-6">Since Inception</span>
       <h1 className="font-display text-5xl mb-16 max-w-2xl">Our Awards.</h1>
 
-      {awards.length === 0 ? (
+      {loading ? (
+        <LoadingGrid count={3} />
+      ) : awards.length === 0 ? (
         <p className="text-mute">Award entries will appear here once added via the admin API.</p>
       ) : (
         <>

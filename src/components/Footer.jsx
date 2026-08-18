@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
+import nexusLogo from "../assets/nexuslogo.png";
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t border-white/5 pt-16 pb-8 px-8 mt-24">
+    <footer className="bg-charcoal border-t border-white/5 pt-16 pb-8 px-8 mt-24">
       <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-16">
         <div>
-          <span className="border border-brass text-brass font-display text-xl px-3 py-1 tracking-wider inline-block mb-4">
-            N&middot;D&middot;B
-          </span>
+          <img src={nexusLogo} alt="Nexus Design & Built" className="h-16 w-auto object-contain rounded-md p-1 mb-4" />
           <p className="text-mute text-sm leading-relaxed">
             Nexus Design &amp; Built delivers end-to-end interior design, architecture, consulting
             and IT solutions — one team, from concept to code.

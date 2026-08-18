@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import { getBlogPosts } from "../api/client.js";
 import SEO from "../components/SEO.jsx";
 import Pagination from "../components/Pagination.jsx";
+import { LoadingGrid } from "../components/AsyncStates.jsx";
 
 export default function Blog() {
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     getBlogPosts({ page, limit: 12 })
       .then((res) => { setPosts(res.data.data); setPages(res.data.pages || 1); })
-      .catch(() => setPosts([]));
+      .catch(() => setPosts([]))
+      .finally(() => setLoading(false));
   }, [page]);
 
   return (
@@ -20,7 +24,9 @@ export default function Blog() {
       <span className="eyebrow mb-6">Blog</span>
       <h1 className="font-display text-5xl mb-16 max-w-2xl">Notes from the studio.</h1>
 
-      {posts.length === 0 ? (
+      {loading ? (
+        <LoadingGrid />
+      ) : posts.length === 0 ? (
         <p className="text-mute">No posts published yet.</p>
       ) : (
         <>

@@ -1,3 +1,5 @@
+import SEO from "../components/SEO.jsx";
+
 export default function AboutUs() {
   return (
     <section className="max-w-5xl mx-auto px-4 sm:px-8 py-16 sm:py-24" data-reveal>
@@ -20,4 +22,3 @@ export default function AboutUs() {
     </section>
   );
 }
-import SEO from "../components/SEO.jsx";
