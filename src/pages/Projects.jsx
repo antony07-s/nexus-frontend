@@ -3,6 +3,7 @@ import { getProjects } from "../api/client.js";
 import SEO from "../components/SEO.jsx";
 import Pagination from "../components/Pagination.jsx";
 import { LoadingGrid } from "../components/AsyncStates.jsx";
+import { Link } from "react-router-dom";
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
@@ -34,9 +35,8 @@ export default function Projects() {
           <button
             key={c}
             onClick={() => { setFilter(c); setPage(1); }}
-            className={`px-5 py-2 text-sm border transition-colors ${
-              filter === c ? "border-brass text-brass" : "border-white/10 text-mute hover:text-ivory"
-            }`}
+            className={`px-5 py-2 text-sm border transition-colors ${filter === c ? "border-brass text-brass" : "border-white/10 text-mute hover:text-ivory"
+              }`}
           >
             {c}
           </button>
@@ -52,20 +52,20 @@ export default function Projects() {
         </p>
       ) : (
         <>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {visible.map((p) => (
-            <div key={p.slug} className="group">
-              <div className="aspect-[4/3] bg-charcoal-panel border border-white/10 overflow-hidden mb-4">
-                {p.coverImage && (
-                  <img src={p.coverImage} alt={p.title} className="w-full h-full object-cover" />
-                )}
-              </div>
-              <h3 className="font-display text-xl">{p.title}</h3>
-              <p className="text-mute text-sm">{p.category} &middot; {p.year}</p>
-            </div>
-          ))}
-        </div>
-        <Pagination page={page} pages={pages} onChange={setPage} />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {visible.map((p) => (
+              <Link key={p.slug} to={`/projects/${p.slug}`} className="group block">
+                <div className="aspect-[4/3] bg-charcoal-panel border border-white/10 overflow-hidden mb-4">
+                  {p.coverImage && (
+                    <img src={p.coverImage} alt={p.title} className="w-full h-full object-cover" />
+                  )}
+                </div>
+                <h3 className="font-display text-xl group-hover:text-brass transition-colors">{p.title}</h3>
+                <p className="text-mute text-sm">{p.category} &middot; {p.year}</p>
+              </Link>
+            ))}
+          </div>
+          <Pagination page={page} pages={pages} onChange={setPage} />
         </>
       )}
       {error && <p className="mt-6 text-red-300" role="alert">{error}</p>}

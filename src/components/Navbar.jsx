@@ -22,7 +22,7 @@ export default function Navbar() {
         <span>Opening time: Mon–Fri 09:00 – 18:00</span>
         <div className="flex items-center gap-6">
           <span>Email: info@nexusdesignbuilt.com</span>
-          <span>Phone: +60 12-345 6789</span>
+          <span>Phone: +919790965755</span>
           <div className="flex items-center gap-3 text-ivory">
             <a href="#" aria-label="Facebook" className="hover:text-brass">FB</a>
             <a href="#" aria-label="Instagram" className="hover:text-brass">IG</a>

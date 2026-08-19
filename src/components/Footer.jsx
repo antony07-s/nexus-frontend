@@ -36,7 +36,7 @@ export default function Footer() {
         <div>
           <h4 className="font-display text-ivory text-lg mb-4">Contact</h4>
           <ul className="space-y-2 text-mute text-sm">
-            <li>Phone: +60 12-345 6789</li>
+            <li>Phone: +919790965755</li>
             <li>Email: info@nexusdesignbuilt.com</li>
             <li>India</li>
           </ul>
@@ -47,7 +47,10 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-mute">
-        <span>&copy; {new Date().getFullYear()} Nexus Design &amp; Built. All rights reserved.</span>
+        <span>
+  &copy; {new Date().getFullYear()} Nexus Design &amp; Built. All rights reserved.{" "}
+  <Link to="/admin/login" className="text-mute/40 hover:text-mute">·</Link>
+</span>
         <div className="flex gap-4">
           <a href="#" className="hover:text-brass">Facebook</a>
           <a href="#" className="hover:text-brass">Instagram</a>
