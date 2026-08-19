@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import nexusLogo from "../assets/nexuslogo.png";
+import LocationToggle from "./LocationToggle.jsx";
 
 export default function Footer() {
   return (
@@ -26,20 +27,21 @@ export default function Footer() {
         <div>
           <h4 className="font-display text-ivory text-lg mb-4">Services</h4>
           <ul className="space-y-2 text-mute text-sm">
-            <li>Interior Design</li>
-            <li>Architecture</li>
-            <li>Consulting</li>
-            <li>IT &amp; Technology</li>
+            <li><Link to="/services#interior" className="hover:text-brass">Interior Design</Link></li>
+            <li><Link to="/services#architecture" className="hover:text-brass">Architecture</Link></li>
+            <li><Link to="/services#consulting" className="hover:text-brass">Consulting</Link></li>
+            <li><Link to="/services#it" className="hover:text-brass">IT &amp; Technology</Link></li>
           </ul>
         </div>
 
         <div>
           <h4 className="font-display text-ivory text-lg mb-4">Contact</h4>
-          <ul className="space-y-2 text-mute text-sm">
-            <li>Phone: +919790965755</li>
-            <li>Email: info@nexusdesignbuilt.com</li>
-            <li>India</li>
-          </ul>
+          <LocationToggle
+            indiaAddress="15, Vasantha Nagar, Wireless Road, Airport, Tiruchirappalli, 620007 (Beside BG Naidu Sweets)"
+            indiaPhone="+919790965755"
+            malaysiaAddress="239A3, Jalan Sultan Azlan Shah, Sentul, 52100 Kuala Lumpur, Malaysia"
+          />
+          <p className="text-mute text-sm mt-3">Email: info@nexusdesignbuilt.com</p>
           <Link to="/contact-us" className="btn-primary mt-4 text-sm px-5 py-2.5">
             Contact Us →
           </Link>
@@ -48,9 +50,9 @@ export default function Footer() {
 
       <div className="max-w-7xl mx-auto border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-mute">
         <span>
-  &copy; {new Date().getFullYear()} Nexus Design &amp; Built. All rights reserved.{" "}
-  <Link to="/admin/login" className="text-mute/40 hover:text-mute">·</Link>
-</span>
+          &copy; {new Date().getFullYear()} Nexus Design &amp; Built. All rights reserved.{" "}
+          <Link to="/admin/login" className="text-mute/40 hover:text-mute">·</Link>
+        </span>
         <div className="flex gap-4">
           <a href="#" className="hover:text-brass">Facebook</a>
           <a href="#" className="hover:text-brass">Instagram</a>
